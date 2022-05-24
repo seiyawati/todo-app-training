@@ -1,24 +1,8 @@
-# README
+# Todo App Training
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## カリキュラム
 
-Things you may want to cover:
+[株式会社万葉の新入社員教育用カリキュラム](https://github.com/everyleaf/el-training/blob/master/docs/el-training.md)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 環境構築
+[Docker公式のRails環境構築](https://docs.docker.com/samples/rails/)
