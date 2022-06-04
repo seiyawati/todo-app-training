@@ -23,3 +23,8 @@ jobs:
       - run:
           name: docker-compose down
           command: docker-compose down
+workflows:
+  version: 2
+  fuga:
+    jobs:
+      - test
