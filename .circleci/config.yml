@@ -1,30 +1,43 @@
+# Ruby CircleCI 2.0 configuration file
 version: 2
 jobs:
-  test:
-    machine:
-      image: circleci/classic:edge
+  build:
+    docker:
+      - image: circleci/ruby:2.5.3-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: incremental_todo
+          RAILS_ENV: test
+      - image: circleci/postgres:9.4.16-alpine-postgis
+        environment:
+          POSTGRES_USER: incremental_todo
+          POSTGRES_DB: incremental_todo_test
+          POSTGRES_PASSWORD: ""
+      - image: redis
+    working_directory: ~/repo
+
     steps:
       - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
       - run:
-          name: docker-compose build
-          command: docker-compose build
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      # run tests!
       - run:
-          name: docker-compose up
-          command: docker-compose up -d
-      - run:
-          name: sleep for waiting launch db
-          command: sleep 1
-      - run:
-          name: rails db:create and db:migrate
-          command: docker-compose run web rails db:create db:migrate
-      - run:
-          name: rubocop
-          command: docker-compose run web bundle exec rubocop
-      - run:
-          name: docker-compose down
-          command: docker-compose down
-workflows:
-  version: 2
-  fuga:
-    jobs:
-      - test
+          name: Rubocop
+          command: bundle exec rubocop
