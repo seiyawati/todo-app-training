@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.5.1-node-browsers
+       - image: circleci/ruby:2.5.9-node-browsers
          environment:
            RAILS_ENV: test
            PGHOST: 127.0.0.1
@@ -17,6 +17,7 @@ jobs:
        - image: circleci/postgres
          environment:
            POSTGRES_USER: circleci
+           POSTGRES_PASSWORD: password
 
     working_directory: ~/repo
 
@@ -43,12 +44,6 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
-      # run tests!
-      - run:
-          name: run tests
-          command: |
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"            
-            bundle exec rspec $TEST_FILES
       - run:
           name: run code analyze
           command: bundle exec rubocop
