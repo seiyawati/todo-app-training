@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.5.9-node-browsers
+      - image: cimg/ruby:2.5.9
         environment:
           PGHOST: localhost
           PGUSER: postgres
