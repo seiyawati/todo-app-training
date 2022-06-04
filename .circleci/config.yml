@@ -32,8 +32,12 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
+      - run:
+          command: |
+            sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0 /usr/lib/x86_64-linux-gnu/libffi.so.6
+
       # Database setup
-      - run: bundle exec rake db:create db:schema:load --trace
+      - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
 
       # run tests!
