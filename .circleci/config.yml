@@ -3,12 +3,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5.9-node-browsers
+      - image: cimg/ruby:2.5.9-node-browsers
         environment:
           PGHOST: localhost
           PGUSER: postgres
           RAILS_ENV: test
-      - image: circleci/postgres:9.4.16-alpine-postgis
+      - image: cimg/postgres:9.4.16-alpine-postgis
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: myapp_test
@@ -31,10 +31,6 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      - run:
-          command: |
-            sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0 /usr/lib/x86_64-linux-gnu/libffi.so.6
 
       # Database setup
       - run: bundle exec rake db:create
