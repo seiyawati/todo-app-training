@@ -1,11 +1,16 @@
-# Todo App Training
+# ステップ4: 作りたいアプリケーションのイメージを考えよう
 
-## カリキュラム
+## 画面設計
 
-[株式会社万葉の新入社員教育用カリキュラム](https://github.com/everyleaf/el-training/blob/master/docs/el-training.md)
+## データ構造
 
-## 環境構築
-[Docker公式のRails環境構築](https://docs.docker.com/samples/rails/)
+Usersテーブル
+
+Tasksテーブル
+
+Labelesテーブル
+
+TaskLabelesテーブル（中間テーブル）
 
 ## テーブル図
 
