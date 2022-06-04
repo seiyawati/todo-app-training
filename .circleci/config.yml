@@ -7,17 +7,17 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.5.9-node-browsers
-         environment:
-           RAILS_ENV: test
-           PGHOST: localhost
+        - image: circleci/ruby:2.5.9-node-browsers
+          environment:
+            RAILS_ENV: test
+            PGHOST: localhost
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-       - image: circleci/postgres
-         environment:
-           POSTGRES_USER: postgres
-           POSTGRES_PASSWORD: password
+        - image: circleci/postgres
+          environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
 
     working_directory: ~/repo
 
@@ -39,7 +39,7 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-        
+
       # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
