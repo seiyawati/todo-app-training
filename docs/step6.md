@@ -59,3 +59,29 @@ STDOUTにログを追記していくのは、事前定義定数に再割り当�
 
 Enforces the use of `$stdout/$stderr/$stdin` instead of `STDOUT/STDERR/STDIN`.
 
+### Bundler/OrderedGems
+
+gemの順番を注意される。
+
+`Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem mysql2 should appear before rails.`
+
+これは空行なしで連なっている物だけ反応するので、空行かコメントを加えると出なくなる。
+
+### Style/ExpandPathArguments
+
+```ruby
+expand_path('../../config/environment', __FILE__)
+
+# 上記ではなくて下記を使う
+expand_path('../config/environment', __dir__)
+```
+
+- File.expand_path
+  - 第1引数の絶対パスを返す
+  - 第2引数は参照の基準となるパス
+
+- `__FILE__`
+  - 実行ファイル名を相対パスで取得する。
+
+- `__dir__`
+  - 実行ファイルのディレクトリ名を絶対パスで取得する。
