@@ -13,10 +13,10 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      flash[:success] = 'タスクを追加しました。'
+      flash[:success] = t('create_task_success')
       redirect_to root_url
     else
-      flash[:danger] = 'タスクの追加に失敗しました。'
+      flash[:danger] = t('create_task_failure')
       render 'new'
     end
   end
@@ -27,10 +27,11 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    if @task.update_attributes(task_params)
-      flash[:success] = 'タスクが更新されました。'
+    if @task.update(task_params)
+      flash[:success] = t('update_task_success')
       redirect_to @task
     else
+      flash[:danger] = t('update_task_failure')
       render 'edit'
     end
   end
