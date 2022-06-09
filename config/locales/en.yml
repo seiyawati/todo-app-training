@@ -35,3 +35,4 @@ en:
   create_task_failure: "タスクを追加に失敗しました。"
   update_task_success: "タスクを更新に成功しました。"
   update_task_failure: "タスクを更新に失敗しました。"
+  delete_task_success: "タスクの削除に成功しました。"
