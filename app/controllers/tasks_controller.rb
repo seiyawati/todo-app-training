@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @task = Task.find(params[:id])
   end
 
   def new
@@ -34,6 +35,12 @@ class TasksController < ApplicationController
       flash[:danger] = t('update_task_failure')
       render 'edit'
     end
+  end
+
+  def destroy
+    Task.find(params[:id]).destroy
+    flash[:success] = t('delete_task_success')
+    redirect_to tasks_path
   end
 
   private

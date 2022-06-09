@@ -37,3 +37,50 @@ def edit
 end
 # 既存のレコードを取得しているのでupdateアクションが動く
 ```
+
+## ステップ8-3: タスクを削除できるようにしましょう
+
+### link_to
+
+show, update, destroyアクションの場合にオブジェクト名だけで指定
+
+```ruby
+<%= link_to 'Show Page', @blog %>
+<%= link_to 'Update Page', @blog, :method => :put %>
+<%= link_to 'Destroy Page', @blog, :method => :delete %>
+```
+
+`task_path(@task) => @task`と省略できる。
+
+## renderとredirect_toとの違い
+
+
+```ruby
+#　これは render実施るrenderを実行している。
+def index
+  @tasks = Task.all
+end
+
+# これはなぜ失敗したときrenderを指定しているのか？
+# rednerはアクション名と同じ名前のビューをレスポンスとして返すから
+# では成功したときredirect_toしている理由は？
+# データが更新されるため、再度HTTPリクエストする必要がある。
+def create
+  @task = Task.new(task_params)
+  if @task.save
+    flash[:success] = t('create_task_success')
+    redirect_to root_url
+  else
+    flash[:danger] = t('create_task_failure')
+    render 'new'
+  end
+end
+```
+
+- render
+  - controller -> view
+
+- redirect_to
+  - controller -> url -> route -> controller -> view
+
+上記のcreateメソッドだと、タスクの作成に失敗したことのエラーを表示するだけならデータの更新もなくHTTPリクエストする必要がないけれど、タスクの作成に成功して一覧ページに飛ぶならデータの更新を反映させる必要があるので、redierect_toを使っている。
