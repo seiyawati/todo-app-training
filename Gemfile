@@ -55,6 +55,8 @@ group :development do
 
   # Adjusted rubocop rule created by retrieva
   gem 'retrieva-cop', require: false
+
+  gem 'rspec-rails'
 end
 
 group :test do
