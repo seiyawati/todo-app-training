@@ -18,6 +18,13 @@ jobs:
           environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: password
+    environment:
+      BUNDLE_JOBS: "4"
+      BUNDLE_RETRY: "3"
+      PGHOST: 127.0.0.1
+      PGUSER: postgres
+      PGPASSWORD: password
+      RAILS_ENV: test
 
     working_directory: ~/repo
 
@@ -47,3 +54,13 @@ jobs:
       - run:
           name: run code analyze
           command: bundle exec rubocop
+
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            bundle exec rspec --format progress \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress \
+                            $TEST_FILES
