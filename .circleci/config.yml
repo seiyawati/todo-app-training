@@ -11,6 +11,7 @@ jobs:
           environment:
             RAILS_ENV: test
             PGHOST: localhost
+            SELENIUM_DRIVER_URL: http://webdriver_chrome:4444/wd/hub
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -29,6 +30,10 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - run:
+          command: chromedriver
+          background: true
+
       - checkout
 
       # Download and cache dependencies
