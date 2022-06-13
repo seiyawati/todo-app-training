@@ -20,6 +20,7 @@ jobs:
             POSTGRES_PASSWORD: password
         - image: selenium/standalone-chrome:latest
           name: webdriver_chrome
+          SELENIUM_DRIVER_URL: http://webdriver_chrome:4444/wd/hub
     environment:
       BUNDLE_JOBS: "4"
       BUNDLE_RETRY: "3"
