@@ -19,8 +19,6 @@ jobs:
           environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: password
-        - image: selenium/standalone-chrome:latest
-          name: webdriver_chrome
     environment:
       BUNDLE_JOBS: "4"
       BUNDLE_RETRY: "3"
