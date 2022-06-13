@@ -11,6 +11,7 @@ jobs:
           environment:
             RAILS_ENV: test
             PGHOST: localhost
+            SELENIUM_DRIVER_URL: http://webdriver_chrome:4444/wd/hub
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -20,7 +21,6 @@ jobs:
             POSTGRES_PASSWORD: password
         - image: selenium/standalone-chrome:latest
           name: webdriver_chrome
-          SELENIUM_DRIVER_URL: http://webdriver_chrome:4444/wd/hub
     environment:
       BUNDLE_JOBS: "4"
       BUNDLE_RETRY: "3"
