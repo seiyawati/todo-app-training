@@ -64,3 +64,7 @@ RSpec.describe Blog do
   end
 end
 ```
+
+## circleci上でSystem Specを実行するための環境構築
+
+https://qiita.com/suzu12/items/808daa56a052f5c76e4b
