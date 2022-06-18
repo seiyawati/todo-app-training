@@ -10,7 +10,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       fill_in '詳細', with: 'テストです。'
       click_button '作成'
 
-      expect(page).to have_content 'タスクを追加に成功しました。'
+      expect(page).to have_content 'タスクの追加に成功しました。'
       expect(page).to have_content '川本聖也'
       expect(page).to have_content 'テストです。'
     }.to change { Task.count }.by(1)
