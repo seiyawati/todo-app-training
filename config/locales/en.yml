@@ -28,11 +28,3 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
-en:
-  hello: "Hello world"
-  create_task_success: "タスクを追加に成功しました。"
-  create_task_failure: "タスクを追加に失敗しました。"
-  update_task_success: "タスクを更新に成功しました。"
-  update_task_failure: "タスクを更新に失敗しました。"
-  delete_task_success: "タスクの削除に成功しました。"
