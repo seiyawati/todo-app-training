@@ -20,7 +20,7 @@ RSpec.describe Task, type: :model do
 
         it '名前は必須となる' do
           valid
-          expect(task.errors.full_messages).to include('Name can\'t be blank')
+          expect(task.errors.full_messages).to include('タスク名を入力してください')
         end
       end
 
@@ -29,7 +29,7 @@ RSpec.describe Task, type: :model do
 
         it '名前は100字以内となる' do
           valid
-          expect(task.errors.full_messages).to include('Name is too long (maximum is 100 characters)')
+          expect(task.errors.full_messages).to include('タスク名は100文字以内で入力してください')
         end
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe Task, type: :model do
 
         it '詳細は必須となる' do
           valid
-          expect(task.errors.full_messages).to include('Content can\'t be blank')
+          expect(task.errors.full_messages).to include('タスク詳細を入力してください')
         end
       end
 
@@ -49,7 +49,7 @@ RSpec.describe Task, type: :model do
 
         it '詳細は500字以内となる' do
           valid
-          expect(task.errors.full_messages).to include('Content is too long (maximum is 500 characters)')
+          expect(task.errors.full_messages).to include('タスク詳細は500文字以内で入力してください')
         end
       end
     end
