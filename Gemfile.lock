@@ -267,7 +267,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.8)
-  rails-i18n (~> 5.1)
+  rails-i18n
   retrieva-cop
   rspec-rails
   sass-rails (~> 5.0)
