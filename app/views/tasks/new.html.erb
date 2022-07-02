@@ -18,5 +18,8 @@
   <%= f.label :content, '詳細', class: 'form-label' %>
   <%= f.text_area :content, class: 'form-control' %>
 
+  <%= f.label :deadline, '終了期限', class: 'form-label' %>
+  <%= f.datetime_field :deadline, class: 'form-control' %>
+
   <%= f.submit '作成', class: 'btn btn-primary' %>
 <% end %>

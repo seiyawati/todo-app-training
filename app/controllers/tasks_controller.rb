@@ -1,6 +1,11 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all.order(created_at: :DESC)
+    # Todo ソート方法で分岐するので将来的にリファクタリングする
+    if params[:order_by] == 'deadline'
+      @tasks = Task.all.deadline_asc
+    else
+      @tasks = Task.all.order(created_at: :DESC)
+    end
   end
 
   def show
@@ -46,6 +51,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :content)
+    params.require(:task).permit(:name, :content, :deadline)
   end
 end
