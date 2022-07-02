@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
   def index
-    # Todo ソート方法で分岐するので将来的にリファクタリングする
-    if params[:order_by] == 'deadline'
-      @tasks = Task.all.deadline_asc
-    else
-      @tasks = Task.all.order(created_at: :DESC)
-    end
+    @tasks =
+      case params[:order_by]
+      when 'deadline'
+        Task.all.deadline_asc
+      else
+        Task.all.order(created_at: :DESC)
+      end
   end
 
   def show
