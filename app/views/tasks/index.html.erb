@@ -1,6 +1,7 @@
 <h1>タスク一覧ページ</h1>
 
-<%= link_to "新規作成", new_task_path %>
+<%= link_to "新規作成", new_task_path %><br>
+<%= link_to "終了期限の近い順でソートする", tasks_path(order_by: 'deadline') %>
 
 <ul>
   <%= render @tasks %>
